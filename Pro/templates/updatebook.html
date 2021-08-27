@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+    Update
+{% endblock title %}
+{% block body %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {% if data %}
+        <input type="text" name="bookname" id="name" placeholder="Enter Full Name" value="{{data.bname}}">
+        <input type="text" name="bookauthor" id="email" placeholder="Enter Email" value="{{data.aname}}">
+        <input type="text" name="price" id="number" placeholder="Enter Number" value="{{data.price}}">
+        <input type="submit" value="submit">
+        {% endif %}
+    </form>
+</div>
+{% endblock body %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+        Shop
+{% endblock title %}
+{% block body %}
+<div class="container">
+    <h3>All Books</h3>
+    <div class="content">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="bname" placeholder="Book Name">
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">S.No.</th>
+        <th scope="col">Book Name</th>
+        <th scope="col">Author Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for data in datas %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{data.bname}}</td>
+                <td>{{data.aname}}</td>
+                <td>{{data.price}}</td>
+                <td>
+                    <a href="/purchase/{{data.pk}}" type="button" class="btn btn-outline-info btn-sm mx-1">Buy Now</button>
+                </td>
+            </tr>
+              {% endfor %}
+    </tbody>
+  </table>
+  <a href = "{% url 'SIGNOUT' %}"><button class="btn btn-primary">Logout</button></a>
+  <a href = "{% url 'SHOWPURCHASED' %}"><button class="btn btn-primary">Purchased Books</button></a>
+</div>
+
+{% endblock body %}

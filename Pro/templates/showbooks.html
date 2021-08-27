@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    All Books
+{% endblock title %}
+{% block body %}
+<div class="container">
+    <h1>See All Books</h1>
+    <a href="{% url 'ADDBOOK' %}"><button class="btn btn-primary">Add Book</button></a>
+    <a href="{% url 'SOLDBOOK' %}"><button class="btn btn-primary">Sold Books</button></a>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">S.No.</th>
+        <th scope="col">Book Name</th>
+        <th scope="col">Author Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for data in datas %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{data.bname}}</td>
+                <td>{{data.aname}}</td>
+                <td>{{data.price}}</td>
+                <td>
+                    <a href="/updatebook/{{data.pk}}" type="button" class="btn btn-outline-info btn-sm mx-1">Edit</button>
+                  <a href="/deletebook/{{data.pk}}" type="button" class="btn btn-outline-danger btn-sm mx-1">Delete</button>
+                </td>
+            </tr>
+              {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock body %}
